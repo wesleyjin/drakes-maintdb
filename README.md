@@ -1,2 +1,4 @@
 # drakes-maintdb
-Files for 180 database project
+Files for IEOR 180 project
+Drake's Brewing Co. Maintenance DB
+
