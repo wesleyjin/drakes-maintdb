@@ -16,6 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+
+# Added after seeing: https://stackoverflow.com/questions/4938491/django-admin-change-header-django-administration-text
+admin.site.site_header = "Drake's Maintenance administration"
+admin.site.site_title = "Drake's Maintenance Login"
+
 urlpatterns = [
 	path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),

@@ -5,7 +5,8 @@ Drake's Brewing Co. Maintenance DB
 ## Getting started:
 0. (Activate 'maintdb' environment)
 1. 'cd' into the folder named 'maintdb'
-2. To start server, run the following in command line: > python manage.py runserver <
+2. To start server, run the following in command line >> python manage.py runserver
+	- Anytime you run this line, make sure the current directory is the root maintdb folder, with the file 'manage.py' in it.
 3. Visit http://localhost:8000/ in your web browser. Should see rocket graphic & Django.
 
 ## Creating a New App:
@@ -14,7 +15,7 @@ Drake's Brewing Co. Maintenance DB
 2. Open the newapp/views.py and create some index page functionality.
 3. In the newapp folder, create a 'urls.py' file and include url patterns
 4. In the maintdb/urls.py file, include the reference to the urls file for the app.
-5. Command line: python manage.py runserver
+5. Command line >> python manage.py runserver
 6. Open localhost:8000/newapp/. Verify it is working with functionality created in #2.
 
 ## Database (SQLite) Setup: 
@@ -37,5 +38,6 @@ Drake's Brewing Co. Maintenance DB
 > Username: admin; PW: drakes180
 1. Run: python manage.py runserver. Navigate to localhost:8000/admin
 2. Login using above credentials.
-3. Regesiter objects that need admin interface by editing newapp/admin.py file
+3. Register objects that need admin interface by editing newapp/admin.py file
+	- https://docs.djangoproject.com/en/2.0/intro/tutorial02/    (bottom of page)
 
