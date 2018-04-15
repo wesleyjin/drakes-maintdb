@@ -41,3 +41,7 @@ Drake's Brewing Co. Maintenance DB
 3. Register objects that need admin interface by editing newapp/admin.py file
 	- https://docs.djangoproject.com/en/2.0/intro/tutorial02/    (bottom of page)
 
+## Views:
+> A view is a “type” of Web page in your Django application that generally serves a specific function and has a specific template. For instance the most basic views for a poll app would be - index page (with all the questions), detail page (with question and vote), results page, vote action.
+
+
