@@ -3,7 +3,7 @@ Files for IEOR 180 project
 Drake's Brewing Co. Maintenance DB
 
 ## Getting started:
-0. (Activate 'maintdb' environment)
+0. Install Django and Python dependencies. (Activate 'maintdb' virtual environment)
 1. 'cd' into the folder named 'maintdb'
 2. To start server, run the following in command line >> python manage.py runserver
 	- Anytime you run this line, make sure the current directory is the root maintdb folder, with the file 'manage.py' in it.
@@ -43,5 +43,14 @@ Drake's Brewing Co. Maintenance DB
 
 ## Views:
 > A view is a “type” of Web page in your Django application that generally serves a specific function and has a specific template. For instance the most basic views for a poll app would be - index page (with all the questions), detail page (with question and vote), results page, vote action.
+https://docs.djangoproject.com/en/2.0/intro/tutorial03/#writing-more-views
+1. To create a new view, add a function to 'views.py' that takes in atleast one request argument and returns a HttpResponse object.
+	- ex: def name_of_view(request, ...): return HttpResponse("contents here")
+2. Add the new views to the url path by editing 'urls.py' and adding the corresponding path() calls for each. [See tutorial link for example]
+3. Use Django database API to make views useful and not just some html text. Use templates to keep functionality but change web design: https://docs.djangoproject.com/en/2.0/intro/tutorial03/#write-views-that-actually-do-something
+4. Create a 'templates' directory in app directory. Create a .html file with html template code. Then update 'views.py' of the app to use the template. [Same link as 3]
+5. Quickly prevent non-objects from having pages by using helper method: "get_object_or_404()" in the 'views.py' file: https://docs.djangoproject.com/en/2.0/intro/tutorial03/#a-shortcut-get-object-or-404
+6. Use the template system to get attributes or other information to view on the webpage: https://docs.djangoproject.com/en/2.0/intro/tutorial03/#use-the-template-system
+
 
 
