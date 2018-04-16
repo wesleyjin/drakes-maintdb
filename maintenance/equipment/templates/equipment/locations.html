@@ -1,0 +1,9 @@
+{% if plant_locations %}
+    <ul>
+    {% for location in plant_locations %}
+        <li><a href="/equipment/{{ location.location_id }}/">{{ location.location_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No locations are available.</p>
+{% endif %}
