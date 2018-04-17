@@ -4,10 +4,10 @@ Drake's Brewing Co. Maintenance DB
 
 ## Getting started:
 0. Install Django and Python dependencies. (Activate 'maintdb' virtual environment)
-1. 'cd' into the folder named 'maintdb'
+1. 'cd' into the folder named 'maintenance'
 2. To start server, run the following in command line >> python manage.py runserver
 	- Anytime you run this line, make sure the current directory is the root maintdb folder, with the file 'manage.py' in it.
-3. Visit http://localhost:8000/ in your web browser. Should see rocket graphic & Django.
+3. Visit http://localhost:8000/admin in your web browser. Should see admin login
 
 ## Creating a New App:
 > https://docs.djangoproject.com/en/2.0/intro/tutorial01/
@@ -51,6 +51,7 @@ https://docs.djangoproject.com/en/2.0/intro/tutorial03/#writing-more-views
 4. Create a 'templates' directory in app directory. Create a .html file with html template code. Then update 'views.py' of the app to use the template. [Same link as 3]
 5. Quickly prevent non-objects from having pages by using helper method: "get_object_or_404()" in the 'views.py' file: https://docs.djangoproject.com/en/2.0/intro/tutorial03/#a-shortcut-get-object-or-404
 6. Use the template system to get attributes or other information to view on the webpage: https://docs.djangoproject.com/en/2.0/intro/tutorial03/#use-the-template-system
+7. HTML Template Creation Tool: https://getbootstrap.com/docs/3.3/components
 
 
 
