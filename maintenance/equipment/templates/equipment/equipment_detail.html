@@ -1,0 +1,29 @@
+<h1> Equipment Info </h1>
+{% if equipment %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Equipment Name</th>
+          <th>Manufacturer</th>
+          <th>Serial #</th>
+          <th>Purchase Date</th>
+          <th>Supplier</th>
+          <th>Service Contacts</th>
+        </tr>
+      </thead>
+
+      <tbody>
+	      <tr>
+	          <td>{{equipment.equipment_name}}</td>
+	          <td>{{equipment.manufacturer}}</td>
+	          <td>{{equipment.serial_no}}</td>
+	          <td>{{equipment.purchase_date}}</td>
+	          <td>{{equipment.supplier}}</td>
+	          <td>{{equip.service_contact}}</td>
+	      </tr>          
+      </tbody>
+    </table>
+    
+{% else %}
+    <p>No locations are available.</p>
+{% endif %}

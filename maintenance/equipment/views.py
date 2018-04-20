@@ -1,7 +1,17 @@
 from django.shortcuts import get_object_or_404, render
 # Create your views here.
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.views import generic
 from .models import Location, Equipment, Part
+
+
+class IndexView(generic.ListView):
+	template_name = 'equipment/locationdash.html'
+	context_object_name = 'plant_locations'
+
+	def get_queryset(self):
+		"""Return all locations"""
+		return Location.objects.order_by('location_name')
 
 def index(request):
 	return HttpResponse("Equipment homepage. Navigate to equipment/locations to see what we have so far.")
@@ -16,6 +26,10 @@ def location(request, location_id):
 	equipment_list = list(Equipment.objects.filter(location = loc.location_id))
 	context = {'location': loc, 'equipments': equipment_list}
 	return render(request, 'equipment/locationinfo.html', context)
+
+class EquipmentView(generic.DetailView):
+	model = Equipment
+	template_name = 'equipment/equipment_detail.html'
 
 def info(request, equipment_id):
 	response = "You're looking at the info page of equipment %s"

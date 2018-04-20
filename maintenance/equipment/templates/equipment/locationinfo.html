@@ -71,7 +71,8 @@
               {% if equipments %}
                 {% for equip in equipments %}
                   <tr>
-                      <td>{{equip.equipment_name}}</td>
+                      <!-- <td><li><a href="/{{location.location_id}}/{{equip.id}}/">{{equip.equipment_name}}</a></li></td> -->
+                      <td><li><a href="{% url 'equipment:info' location_id=location.location_id pk=equip.id %}">{{equip.equipment_name}}</a></li></td>
                       <td>{{equip.manufacturer}}</td>
                   </tr>
                 {% endfor %}

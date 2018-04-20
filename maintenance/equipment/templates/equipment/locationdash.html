@@ -72,7 +72,7 @@
                 {% for location in plant_locations %}
                   <tr>
                       <td>{{location.location_id}}</td>
-                      <td><li><a href="{% url 'location' location.location_id %}">{{ location.location_name }}</a></li></td>
+                      <td><li><a href="{% url 'equipment:location' location.location_id %}">{{ location.location_name }}</a></li></td>
                   </tr>
                 {% endfor %}
               {% else %}
