@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',  
     'markdown_deux',  
     'bootstrapform', 
-    'helpdesk', 
+    'helpdesk',
+    'django.contrib.sites', 
 ] 
 
 MIDDLEWARE = [
