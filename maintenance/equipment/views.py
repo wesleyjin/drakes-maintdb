@@ -27,8 +27,13 @@ def location(request, location_id):
 	context = {'location': loc, 'equipments': equipment_list}
 	return render(request, 'equipment/location_detail.html', context)
 
-class EquipmentList(generic.ListView):
-	template_name = 'equipment/'
+class EquipmentListView(generic.ListView):
+	template_name = 'equipment/equipment_list.html'
+	context_object_name = 'equipments'
+
+	def get_queryset(self):
+		"""Return all equipment"""
+		return Equipment.objects.order_by('equipment_name')
 
 
 class EquipmentView(generic.DetailView):
