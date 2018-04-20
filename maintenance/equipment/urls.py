@@ -4,9 +4,9 @@ from . import views
 
 app_name = 'equipment'
 urlpatterns = [
-	path('', views.IndexView.as_view(), name='index'),
+	path('', views.index, name='index'),
 	# /equipment/locations
-    path('locations/', views.plant_locations, name='plant_locations'),
+    path('locations/', views.LocationListView.as_view(), name='location_list'),
     # /equipment/BH1/
     path('<str:location_id>/', views.location, name = 'location'),
     # /equipment/bh1/kettle1/
