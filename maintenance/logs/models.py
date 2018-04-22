@@ -35,7 +35,8 @@ class Service(models.Model):
     frequency = models.CharField(
         _('Service Frequency'),
         max_length=20,
-        choices=FREQUENCY_CHOICES)
+        choices=FREQUENCY_CHOICES
+    )
 
     def __str__(self):
         return 'Service %s for %s ' % (self.id, self.equipment)
@@ -48,27 +49,47 @@ class Log(models.Model):
     come back to edit description with notes, contacts, and information about the resolving
     employee and resolved date.
     """
+    TYPE_CHOICES = (
+        ('pm', _('Preventative Maintenance')),
+        ('breakdown', _('Equipment Breakdown')),
+        ('request', _('Maintenance Request')),
+        ('issue', _('Issue with equipment')),
+        ('other', _('Other'))
+    )
+
     # Date of ticket creation
     created = models.DateTimeField(auto_now_add=True)
 
+    type = models.CharField(
+        _('Log Type'),
+        max_length=10,
+        choices=TYPE_CHOICES,
+        help_text='Type of log: breakdown, PM, issue, request, other'
+    )
+
     equipment = models.ForeignKey(
         Equipment,
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE
+    )
 
     summary = models.CharField(
         _('Summary of work done/issue'),
-        max_length=200)
+        max_length=200
+    )
 
     description = models.TextField(
-        help_text=_('Please be as descriptive as possible and include all details.'))
+        help_text=_('Please be as descriptive as possible and include all details.')
+    )
 
     issue_datetime = models.DateTimeField(
         help_text=_('Date and time of estimated start of issue or maintenance work'),
         blank=True,
-        null=True)
+        null=True
+    )
 
     resolved = models.BooleanField(
-        default=False)
+        default=False
+    )
 
     resolved_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -82,11 +103,12 @@ class Log(models.Model):
     resolved_datetime = models.DateTimeField(
         help_text='Time machine was ready for production',
         blank=True,
-        null=True)
+        null=True
+    )
 
     services = models.ManyToManyField(
         Service,
-        help_text='Pre-scheduled services completed with this log',
+        help_text='Scheduled maintenance services completed with this log',
         blank=True
     )
 
