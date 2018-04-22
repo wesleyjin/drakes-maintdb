@@ -58,32 +58,41 @@
           <h1 class="page-header">Equipment Info: {{equipment.equipment_name}}</h1>
 
           <div class="table-responsive">
-          {% if equipment %}
-		    <table class="table table-striped">
-		      <thead>
-		        <tr>
-		          <th>Manufacturer</th>
-		          <th>Serial #</th>
-		          <th>Purchase Date</th>
-		          <th>Supplier</th>
-		          <th>Service Contacts</th>
-		        </tr>
-		      </thead>
+            {% if equipment %}
+      		    <table class="table table-striped">
+      		      <thead>
+      		        <tr>
+      		          <th>Manufacturer</th>
+      		          <th>Serial #</th>
+      		          <th>Purchase Date</th>
+      		          <th>Supplier</th>
+      		          <th>Service Contacts</th>
+      		        </tr>
+      		      </thead>
 
-		      <tbody>
-			      <tr>
-			          <td>{{equipment.manufacturer}}</td>
-			          <td>{{equipment.serial_no}}</td>
-			          <td>{{equipment.purchase_date}}</td>
-			          <td>{{equipment.supplier}}</td>
-			          <td>{{equip.service_contact}}</td>
-			      </tr>          
-		      </tbody>
-		    </table>
+      		      <tbody>
+      			      <tr>
+      			          <td>{{equipment.manufacturer}}</td>
+      			          <td>{{equipment.serial_no}}</td>
+      			          <td>{{equipment.purchase_date}}</td>
+      			          <td>{{equipment.supplier}}</td>
+      			          <td>{{equip.service_contact}}</td>
+      			      </tr>          
+      		      </tbody>
+      		    </table>
 		    
-		{% else %}
-		    <p>No locations are available.</p>
-		{% endif %}
+		        {% else %}
+		          <p>No locations are available.</p>
+		        {% endif %}
+
+            <br><br>
+            
+            <h2>{{equipment.equipment_name}} Tickets:</h2>
+
+            <br><br>
+            <br><br>
+            
+            <h2>{{equipment.equipment_name}} Parts:</h2>            
           </div>
         </div>
       </div>
