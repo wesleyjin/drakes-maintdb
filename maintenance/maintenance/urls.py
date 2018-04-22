@@ -22,6 +22,7 @@ admin.site.site_title = "Drake's Maintenance Login"
 
 urlpatterns = [
     path('equipment/', include('equipment.urls')),
+    path('maintenance/', include('logs.urls')),
     path('admin/', admin.site.urls),
     path(r'helpdesk/', include('helpdesk.urls'))
 ]
