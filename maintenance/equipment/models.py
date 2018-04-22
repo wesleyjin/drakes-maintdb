@@ -30,7 +30,7 @@ class Part(models.Model):
     on_equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
     manufacturer = models.CharField(max_length=50, blank=True)
     supplier = models.CharField(max_length=50, blank=True)
-    lead_time = models.DurationField(null=True)
+    lead_time = models.DurationField(blank = True, null=True)
 
     def __str__(self):
-        return '%s on %s' % (self.part_name, Equipment.objects.get(pk=self.on_equipment))
+        return '%s on %s' % (self.part_name, Equipment.objects.get(pk=self.on_equipment).equipment_name)
