@@ -91,13 +91,22 @@ class Log(models.Model):
         default=False
     )
 
+    assigned_to = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='assigned_to',
+        blank=True,
+        null=True,
+        help_text='Person responsible for log activity.'
+    )
+
     resolved_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='resolved_by',
         blank=True,
         null=True,
-        help_text='Person who worked on the Machine'
+        help_text='Person closing the log'
     )
 
     resolved_datetime = models.DateTimeField(

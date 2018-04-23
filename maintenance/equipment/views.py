@@ -42,8 +42,3 @@ class EquipmentListView(generic.ListView):
 class EquipmentView(generic.DetailView):
     model = Equipment
     template_name = 'equipment/equipment_detail.html'
-
-
-def info(request, equipment_id):
-    response = "You're looking at the info page of equipment %s"
-    return HttpResponse(response % equipment_id)

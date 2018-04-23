@@ -41,9 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'markdown_deux',  
-    'bootstrapform', 
-    'helpdesk',
-    'django.contrib.sites', 
+    'bootstrapform'#,
+    # 'helpdesk',
+    # 'django.contrib.sites',
 ] 
 
 MIDDLEWARE = [
@@ -128,4 +128,4 @@ STATIC_URL = '/static/'
 STATIC_ROOT = (os.path.join(BASE_DIR, 'equipment', 'static'))
 
 SITE_ID = 1
-LOGIN_URL = '/helpdesk/login/'
+# LOGIN_URL = '/helpdesk/login/'

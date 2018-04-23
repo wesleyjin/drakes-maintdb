@@ -45,14 +45,15 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><a href="#">Home</a></li>
-            <li><a href="{% url 'equipment:location_list' %}">Location</a></li>
-            <li class="active"><a href="{% url 'equipment:list' %}">Equipment <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Parts</a></li>
+            <li><a href="#">Maintenance Logs</a></li>
+            <li class="active"><a href="{% url 'equipment:list' %}">Equipment<span class="sr-only">(current)</span></a></li>
+            <li><a href="{% url 'equipment:location_list' %}">Plant Locations</a></li>
+            <li><a href="#">Scheduled Services</a></li>
           </ul>
-          <ul class="nav nav-sidebar">
+<!--           <ul class="nav nav-sidebar">
             <li><a href="">Ticket Management</a></li>
             <li><a href="">Create New Ticket</a></li>
-          </ul>
+          </ul> -->
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Plant Equipment</h1>
