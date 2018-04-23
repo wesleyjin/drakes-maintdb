@@ -3,7 +3,8 @@ IEOR 180 Project
 
 ## Directories & Files:
 * equipment 
-> Plant locations, equipment, and parts <
+> Plant locations, equipment, and parts
+
 	* Models (entities) - Equipment, Location, Parts
 	* Views (webpages) - equipment list/detail, location_list, location-equipment_list
 
