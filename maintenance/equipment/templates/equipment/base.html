@@ -3,8 +3,17 @@
 <html lang="en">
 
   <head>
-    <link rel="icon" href="{% static 'bootstrap/img/favicon.ico' %}">
+    <!-- FAVICON Section -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'bootstrap/img/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'bootstrap/img/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'bootstrap/img/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'bootstrap/img/favicon/site.webmanifest' %}">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Site Title -->
     <title>{% block site-title %}{% endblock %}</title>
+    
     <!-- Bootstrap core CSS: Flatly Theme -->
     <!-- https://bootswatch.com/flatly/ -->
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
@@ -17,7 +26,7 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand mb-0 h1" href="#">
-            <img src="{% static 'bootstrap/img/logo.png' %}" width="80" height="60" alt="">
+            <img src="{% static 'bootstrap/img/logo.png' %}" width="60" height="45" alt="">
             Maintenance
           </a>
         </div>

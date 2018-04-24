@@ -39,7 +39,7 @@ work logs, requests, equipment issues, preventative maintenance,
               <tr>
                   <td><a href="#">{{ log.id }}</a></td>
                   <td>{{log.type}}</td>
-                  <td>{{log.equipment}}</td>
+                  <td>{{log.equipment.get_location}} - {{log.equipment}}</td>
                   <td>{{log.summary}}</td>
                   <td>{{log.resolved}}</td>
               </tr>
