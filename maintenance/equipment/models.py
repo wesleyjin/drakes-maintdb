@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import get_object_or_404
 
 
 # Create your models here.
@@ -22,6 +23,10 @@ class Equipment(models.Model):
 
     def __str__(self):
         return '%s' % self.equipment_name
+
+    def get_location(self):
+        loc = self.location
+        return loc.location_id
 
 
 class Part(models.Model):

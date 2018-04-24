@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'django_tables2'
-    # 'django_filters'
+    'django_tables2',
+    'django_filters'
     # 'markdown_deux',
     # 'bootstrapform'#,
     # 'helpdesk',

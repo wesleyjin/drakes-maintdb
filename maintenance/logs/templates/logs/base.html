@@ -1,0 +1,83 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <link rel="icon" href="{% static 'bootstrap/img/favicon.ico' %}">
+    <title>{% block site-title %}{% endblock %}</title>
+    <!-- Bootstrap core CSS: Flatly Theme -->
+    <!-- https://bootswatch.com/flatly/ -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  </head>
+
+  <body>
+
+  	<nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand mb-0 h1" href="#">
+            <!-- <img src="{% static 'bootstrap/img/logo.png' %}" width="80" height="60" alt=""> -->
+            Maintenance
+          </a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item {% block nav-home %}{% endblock %}">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item dropdown {% block nav-equipment %}{% endblock %}">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Equipment
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'equipment:location_list' %}">By plant location</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'equipment:list' %}">By name</a>
+              </div>
+            </li>            
+            <li class="nav-item {% block nav-logs %}{% endblock %}">
+              <a class="nav-link" href="#">Logs</a>
+            </li>
+
+            <li class="nav-item {% block nav-services %}{% endblock %}">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item"><a class="nav-link" href="/admin/"><span class="glyphicon glyphicon-cog">Admin Site</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <br>
+      <div class="page-header" id=banner>
+        <div class="row">
+          <div class="col-lg-8 col-md-7 col-sm-6">
+            <h1>{% block page-header %}{% endblock %}</h1>
+            <p class="lead">{% block page-header-sub %}{% endblock %}</p>
+          </div>
+        </div>
+      </div>
+          {% block content %}{% endblock %} 
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+  </body>
+</html>

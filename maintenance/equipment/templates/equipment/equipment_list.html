@@ -34,7 +34,7 @@
           {% if equipments %}
             {% for equipment in equipments %}
               <tr>
-                  <td><a href="{% url 'equipment:info' location_id=equipment.location pk=equipment.id %}">{{ equipment.equipment_name }}</a></td>
+                  <td><a href="{% url 'equipment:info' location_id=equipment.get_location pk=equipment.id %}">{{ equipment.equipment_name }}</a></td>
                   <td>{{equipment.location}}</td>
                   <td>{{equipment.manufacturer}}</td>
               </tr>

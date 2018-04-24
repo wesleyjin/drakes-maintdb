@@ -9,10 +9,6 @@ def index(request):
     return HttpResponse("Homepage. Navigate to equipment/locations to see what we have so far.")
 
 
-def base(request):
-    return render(request, 'equipment/base.html')
-
-
 class LocationListView(generic.ListView):
     template_name = 'equipment/location_list.html'
     context_object_name = 'plant_locations'
@@ -21,11 +17,6 @@ class LocationListView(generic.ListView):
         """Return all locations"""
         return Location.objects.order_by('location_name')
 
-
-# def plant_locations(request):
-# 	location_list = Location.objects.order_by('location_name')
-# 	context = {'plant_locations': location_list}
-# 	return render(request,'equipment/location_list.html', context)
 
 def location(request, location_id):
     loc = get_object_or_404(Location, pk=location_id)
