@@ -6,7 +6,7 @@ from .models import Location, Equipment, Part
 
 
 def index(request):
-    return HttpResponse("Equipment homepage. Navigate to equipment/locations to see what we have so far.")
+    return HttpResponse("Homepage. Navigate to equipment/locations to see what we have so far.")
 
 
 def base(request):
