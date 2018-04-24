@@ -17,6 +17,7 @@ Database that logs all maintenance-related equipment, services, schedules, & mor
 
 ### maintenance
 > project setting and configuration directory
+* Default Models used: User (as employee entity)
 * project `settings.py` & `urls.py`
 
 ### db.sqlite3

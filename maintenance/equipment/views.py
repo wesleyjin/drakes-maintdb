@@ -9,6 +9,10 @@ def index(request):
     return HttpResponse("Equipment homepage. Navigate to equipment/locations to see what we have so far.")
 
 
+def base(request):
+    return render(request, 'equipment/base.html')
+
+
 class LocationListView(generic.ListView):
     template_name = 'equipment/location_list.html'
     context_object_name = 'plant_locations'
