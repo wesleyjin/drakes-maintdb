@@ -17,7 +17,7 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand mb-0 h1" href="#">
-            <!-- <img src="{% static 'bootstrap/img/logo.png' %}" width="80" height="60" alt=""> -->
+            <img src="{% static 'bootstrap/img/logo.png' %}" width="80" height="60" alt="">
             Maintenance
           </a>
         </div>
@@ -42,7 +42,7 @@
               </div>
             </li>            
             <li class="nav-item {% block nav-logs %}{% endblock %}">
-              <a class="nav-link" href="#">Logs</a>
+              <a class="nav-link" href="{% url 'logs:logs' %}">Logs</a>
             </li>
 
             <li class="nav-item {% block nav-services %}{% endblock %}">
