@@ -28,6 +28,8 @@ class Equipment(models.Model):
         loc = self.location
         return loc.location_id
 
+#     Get tickets. get parts
+
 
 class Part(models.Model):
     part_name = models.CharField(max_length=100)

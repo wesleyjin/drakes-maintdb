@@ -1,0 +1,54 @@
+{% extends 'logs/base.html' %}
+
+{% block site-title %}Drake's Maintenance Services{% endblock %}
+
+
+{% block nav-services %}
+  active
+{% endblock %}
+
+
+{% block page-header %}
+  Maintenance Services
+{% endblock %}
+
+{% block page-header-sub %}
+scheduled maintenace work for plant equipment 
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Equipment</th>
+              <th>Description</th>
+              <th>Frequency</th>
+            </tr>
+          </thead>
+
+          <tbody>
+          {% if service_list %}
+            {% for service in service_list %}
+              <tr>
+                  <td><a href="#">{{ service.id }}</a></td>
+                  <td>{{service.equipment.get_location}} - {{service.equipment}}</td>
+                  <td>{{service.description}}</td>
+                  <td>{{service.frequency}}</td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <p>No services available.</p>
+          {% endif %}            
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -19,10 +19,10 @@ from django.urls import path, include
 # Added after seeing: https://stackoverflow.com/questions/4938491/django-admin-change-header-django-administration-text
 admin.site.site_header = "Drake's Maintenance Administration"
 admin.site.site_title = "Drake's Maintenance Login"
-from equipment import views as eq_views
+from logs import views as log_views
 
 urlpatterns = [
-    path('', eq_views.index, name='home'),
+    path('', log_views.HomepageView.as_view(), name='home'),
     path('equipment/', include('equipment.urls')),
     path('maintenance/', include('logs.urls')),
     path('admin/', admin.site.urls),
