@@ -1,0 +1,64 @@
+{% extends 'logs/base.html' %}
+
+{% block site-title %}Service Information{% endblock %}
+
+
+{% block nav-services %}
+  active
+{% endblock %}
+
+
+{% block page-header %}
+ <h2> Maintenance Service</h2>
+{% endblock %}
+
+{% block page-header-sub %}
+<!-- {{service.equipment}} -->
+<p>Created: {{service.created}}</p>
+{% endblock %}
+
+
+{% block content %}
+  <div class="row">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+      <h4>{{service.description}}</h4>
+      <div class="table table-sm">
+        {% if service %}
+          <table class="table table-responsive table-hover table-striped">
+            <tbody>
+              <tr>
+                <td><b>Frequency:  </b></td>
+                <td>{{service.get_frequency_display}}</td>
+              </tr>               
+              <tr>
+                <td><b>Location:  </b></td>
+                <td><a href="{% url 'equipment:location' service.equipment.get_location %}"> {{service.equipment.location}}</a></td>
+              </tr>              
+              <tr>
+                <td><b>Equipment:  </b></td>
+                <td><a href="{% url 'equipment:info' location_id=service.equipment.get_location pk=service.equipment.id %}"> {{service.equipment}}</a></td>
+              </tr>                                                                                  
+            </tbody>
+          </table>
+
+        {% else %}
+          <p>No service data available.</p>
+        {% endif %}
+      </div>
+      <a class="btn btn-primary" href="#" role="button">Edit Service</a>
+      <button type="button" class="btn btn-danger">Delete Service</button>
+    </div>
+  </div>
+
+<!--   <div class="row">
+    <div class="col-lg-9">
+        <h3>{{service.equipment_name}} Parts:</h3>     
+        <br><br>        
+    </div>
+  </div> -->
+    
+{% endblock %} 
+
+
+
+
