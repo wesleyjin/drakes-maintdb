@@ -11,6 +11,8 @@ class Service(models.Model):
     A record of all the preventative maintenance SERVICEs that need to be repeated for
     desired frequency (weekly, monthly, annually, etc.)
     """
+    created = models.DateTimeField(auto_now_add=True)
+
     FREQUENCY_CHOICES = (
         ('daily', _('Daily')),
         ('weekly', _('Weekly')),
