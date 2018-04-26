@@ -3,6 +3,14 @@ IEOR 180 Project
 
 Database that logs all maintenance-related equipment, services, schedules, & more. Web user interface to interact with data.
 
+## Required Dependencies:
+* Python 3.6 - https://www.python.org/downloads/
+### Python Packages
+* Django 2.0 - `pip install django` https://docs.djangoproject.com/en/2.0/intro/install/
+* django_filters - `pip install django-filter` http://django-filter.readthedocs.io/en/latest/guide/install.html
+* django_tables2 - `pip install django-tables2` https://django-tables2.readthedocs.io/en/latest/pages/installation.html
+
+
 ## Directories & Files:
 ### equipment 
 > Plant locations, equipment, and parts
