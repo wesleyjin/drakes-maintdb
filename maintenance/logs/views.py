@@ -48,7 +48,7 @@ class ServiceListView(generic.ListView):
         # context['extra'] = 'this'
         return context
 
-#
-# class ServiceDetailView(generic.DetailView):
-#     model = Service
-#     template_name = 'logs/service_detail.html'
+
+class ServiceDetailView(generic.DetailView):
+    model = Service
+    template_name = 'logs/service_detail.html'
