@@ -2,3 +2,4 @@ maintenance/.idea/
 PyCharm-monokai.jar
 *.DS_Store
 __pycache__/
+*/__pycache__/

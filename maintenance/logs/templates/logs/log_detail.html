@@ -1,0 +1,103 @@
+{% extends 'logs/base.html' %}
+
+{% block site-title %}Log Information{% endblock %}
+
+
+{% block nav-logs %}
+  active
+{% endblock %}
+
+
+{% block page-header %}
+ <h2> Maintenance Log #{{log.id}}</h2>
+{% endblock %}
+
+{% block page-header-sub %}
+<p>Created: {{log.created}}</p>
+{% endblock %}
+
+
+{% block content %}
+  <div class="row">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+      <div class="table table-sm">
+        {% if log %}
+          <table class="table table-responsive table-hover table-striped">
+            <tbody>
+              <tr>
+                <td><b>Equipment:  </b></td>
+                <td><a href="{% url 'equipment:info' location_id=log.equipment.get_location pk=log.equipment.id %}"> {{log.equipment}}</a></td>
+              </tr>         
+              <tr>
+                <td><b>Log Type:  </b></td>
+                <td>{{log.get_type_display}}</td>
+              </tr>         
+
+              <tr>
+                <td><b>Issue Start:  </b></td>
+                <td>{{log.issue_datetime}}</td>
+              </tr>
+              <tr>
+                <td><b>Assigned to:  </b></td>
+                <td>{{log.assigned_to}}</td>
+              </tr>                                          
+<!--               <tr>
+                <td><b>Resolved?</b></td>
+                <td>{{log.resolved}}</td>
+              </tr>                            
+              <tr>
+                <td><b>Resolved by</b></td>
+                <td>{{log.resolved_by}}</td>
+              </tr>     
+              <tr>
+                <td><b>Resolved DateTime</b></td>
+                <td>{{log.resolved_datetime}}</td>
+              </tr>   -->                                   
+            </tbody>
+          </table>
+
+        {% else %}
+          <p>No log data available.</p>
+        {% endif %}
+      </div>
+      <h4>{{log.summary}}</h4>
+      <p><b>Description: </b>{{log.description}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+      <div class="table table-sm">
+        <table class="table table-responsive table-hover table-striped">
+          <tbody>
+            <tr>
+              <td><b>Resolved?</b></td>
+              <td>{{log.resolved}}</td>
+            </tr>                            
+            <tr>
+              <td><b>Resolved by: </b></td>
+              <td>{{log.resolved_by}}</td>
+            </tr>     
+            <tr>
+              <td><b>Resolved Datetime:</b></td>
+              <td>{{log.resolved_datetime}}</td>
+            </tr>                                     
+          </tbody>
+        </table>
+      </div> 
+    </div>
+  </div>
+
+
+<!--   <div class="row">
+    <div class="col-lg-9">
+        <h3>{{log.equipment_name}} Parts:</h3>     
+        <br><br>        
+    </div>
+  </div> -->
+    
+{% endblock %} 
+
+
+
+

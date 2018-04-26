@@ -32,10 +32,10 @@ class LogListView(generic.ListView):
     #     """Return all logs"""
     #     return Log.objects.order_by('-id')
 
-#
-# class LogDetailView(generic.DetailView):
-#     model = Log
-#     template_name = 'logs/log_detail.html'
+
+class LogDetailView(generic.DetailView):
+    model = Log
+    template_name = 'logs/log_detail.html'
 
 
 class ServiceListView(generic.ListView):

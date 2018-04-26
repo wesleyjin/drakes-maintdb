@@ -26,8 +26,8 @@ work logs, requests, equipment issues, preventative maintenance,
           <thead>
             <tr>
               <th>#</th>
-              <th>Type</th>
-              <th>Equipment</th>
+              <th>Equipment</th>              
+              <th>Log Type</th>
               <th>Log Summary</th>
               <th>Resolved?</th>
             </tr>
@@ -37,10 +37,10 @@ work logs, requests, equipment issues, preventative maintenance,
           {% if log_list %}
             {% for log in log_list %}
               <tr>
-                  <td><a href="#">{{ log.id }}</a></td>
+                  <td>{{ log.id }}</td>
+                  <td>{{log.equipment.get_location}} - {{log.equipment}}</td>                
                   <td>{{log.type}}</td>
-                  <td>{{log.equipment.get_location}} - {{log.equipment}}</td>
-                  <td>{{log.summary}}</td>
+                  <td><a href="{% url 'logs:log_detail' log.id %}">{{log.summary}}</a></td>
                   <td>{{log.resolved}}</td>
               </tr>
             {% endfor %}
