@@ -88,9 +88,9 @@ class Log(models.Model):
         help_text=_('Please be as descriptive as possible and include all details.')
     )
 
-    files = models.FileField(
+    file = models.FileField(
         upload_to='log_files/',
-        help_text='Any files or images associated with this log.',
+        help_text='Any file or image associated with this log.',
         blank=True,
         null=True
     )
