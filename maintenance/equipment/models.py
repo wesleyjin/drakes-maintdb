@@ -20,6 +20,7 @@ class Equipment(models.Model):
     purchase_date = models.DateField(blank=True, null=True)
     supplier = models.CharField(max_length=50, blank=True)
     service_contact = models.TextField(blank=True)
+    files = models.FileField(upload_to='equipment_files', blank=True, null=True)
 
     def __str__(self):
         return '%s' % self.equipment_name

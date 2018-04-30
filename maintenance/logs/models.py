@@ -34,6 +34,11 @@ class Service(models.Model):
         help_text='150 character limit description of maintenance service'
     )
 
+    notes = models.TextField(
+        help_text=_('Any additional details regarding the maintenance service.'),
+        blank=True
+    )
+
     frequency = models.CharField(
         _('Service Frequency'),
         max_length=20,
@@ -81,6 +86,13 @@ class Log(models.Model):
 
     description = models.TextField(
         help_text=_('Please be as descriptive as possible and include all details.')
+    )
+
+    files = models.FileField(
+        upload_to='log_files/',
+        help_text='Any files or images associated with this log.',
+        blank=True,
+        null=True
     )
 
     issue_datetime = models.DateTimeField(

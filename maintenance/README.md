@@ -26,7 +26,11 @@ Database that logs all maintenance-related equipment, services, schedules, & mor
 ### maintenance
 > project setting and configuration directory
 * Default Models used: User (as employee entity)
-* project `settings.py` & `urls.py`
+* contains project `settings.py` & master `urls.py`
+
+### media
+> directory of file uploads
+* files uploaded with a log entry or equipment entry are saved locally in this directory
 
 ### db.sqlite3
 > Project database file
