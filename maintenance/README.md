@@ -40,3 +40,9 @@ Database that logs all maintenance-related equipment, services, schedules, & mor
 > Python file to allow for terminal commands with project.
 * in terminal `$ python manage.py [command]`
 * commands: https://docs.djangoproject.com/en/2.0/ref/django-admin/
+
+### Warnings
+> FOR INTERNAL/LOCAL USE ONLY
+* some security vulnerabilities include:
+* ability to upload any type of file in FileFields (code injection)
+* ability to access any media file uploaded to FileFields
