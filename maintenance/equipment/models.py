@@ -3,6 +3,8 @@ from django.shortcuts import get_object_or_404
 
 
 # Create your models here.
+
+
 class Location(models.Model):
     location_id = models.CharField(primary_key=True, max_length=5)
     location_name = models.CharField(max_length=50)
@@ -41,4 +43,5 @@ class Part(models.Model):
     lead_time = models.DurationField(blank = True, null=True)
 
     def __str__(self):
-        return '%s on %s' % (self.part_name, Equipment.objects.get(pk=self.on_equipment).equipment_name)
+        return '%s on %s' % (self.part_name,
+                             Equipment.objects.get(pk=self.on_equipment).equipment_name)

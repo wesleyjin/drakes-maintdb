@@ -8,7 +8,7 @@ from equipment.models import Equipment
 
 class Service(models.Model):
     """
-    A record of all the preventative maintenance SERVICEs that need to be repeated for
+    A record of all the preventative maintenance services that need to be repeated for
     desired frequency (weekly, monthly, annually, etc.)
     """
     created = models.DateTimeField(auto_now_add=True)
@@ -21,29 +21,24 @@ class Service(models.Model):
         ('semiannually', _('Semi-annually')),
         ('annually', _('Annually')),
         ('2years', _('2 Years')),
-        ('4years', _('4 Years')),
-    )
+        ('4years', _('4 Years')),)
 
     equipment = models.ForeignKey(
         Equipment,
-        on_delete=models.CASCADE
-    )
+        on_delete=models.CASCADE)
 
     description = models.CharField(
         max_length=150,
-        help_text='150 character limit description of maintenance service'
-    )
+        help_text='150 character limit description of maintenance service')
 
     notes = models.TextField(
         help_text=_('Any additional details regarding the maintenance service.'),
-        blank=True
-    )
+        blank=True)
 
     frequency = models.CharField(
         _('Service Frequency'),
         max_length=20,
-        choices=FREQUENCY_CHOICES
-    )
+        choices=FREQUENCY_CHOICES)
 
     def __str__(self):
         return '%s: %s ' % (self.equipment, self.description)
@@ -71,39 +66,32 @@ class Log(models.Model):
         _('Log Type'),
         max_length=10,
         choices=TYPE_CHOICES,
-        help_text='Type of log: breakdown, PM, issue, request, other'
-    )
+        help_text='Type of log: breakdown, PM, issue, request, other')
 
     equipment = models.ForeignKey(
         Equipment,
-        on_delete=models.CASCADE
-    )
+        on_delete=models.CASCADE)
 
     summary = models.CharField(
         _('Summary of work done/issue'),
-        max_length=200
-    )
+        max_length=200)
 
     description = models.TextField(
-        help_text=_('Please be as descriptive as possible and include all details.')
-    )
+        help_text=_('Please be as descriptive as possible and include all details.'))
 
     file = models.FileField(
         upload_to='log_files/',
         help_text='Any file or image associated with this log.',
         blank=True,
-        null=True
-    )
+        null=True)
 
     issue_datetime = models.DateTimeField(
         help_text=_('Date and time of estimated start of issue or maintenance work'),
         blank=True,
-        null=True
-    )
+        null=True)
 
     resolved = models.BooleanField(
-        default=False
-    )
+        default=False)
 
     assigned_to = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -111,8 +99,7 @@ class Log(models.Model):
         related_name='assigned_to',
         blank=True,
         null=True,
-        help_text='Person responsible for log activity.'
-    )
+        help_text="Person responsible for this log's activity & data.")
 
     resolved_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -120,22 +107,17 @@ class Log(models.Model):
         related_name='resolved_by',
         blank=True,
         null=True,
-        help_text='Person closing the log'
-    )
+        help_text='Person closing the log')
 
     resolved_datetime = models.DateTimeField(
         help_text='Time machine was ready for production',
         blank=True,
-        null=True
-    )
+        null=True)
 
     services = models.ManyToManyField(
         Service,
         help_text='Scheduled maintenance services completed with this log',
-        blank=True
-    )
-
-    # verbose_name attribute if needed
+        blank=True)
 
     class Meta:
         get_latest_by = 'created'

@@ -60,7 +60,7 @@
           <p>No log data available.</p>
         {% endif %}
       </div>
-      <h4>{{log.summary}}</h4>
+      <h4><b>{{log.summary}}</b></h4>
       <p><b>Description: </b>{{log.description}}</p>
     </div>
   </div>
@@ -86,7 +86,8 @@
         </table>
       </div>
       <a class="btn btn-primary" href="/admin/logs/log/{{log.id}}/change/" role="button">Edit Log</a>
-      <button type="button" class="btn btn-danger">Delete Log</button>       
+      <button type="button" class="btn btn-danger">Delete Log</button>    
+      <br><br>   
     </div>
   </div>
 
