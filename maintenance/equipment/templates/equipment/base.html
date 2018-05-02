@@ -4,12 +4,12 @@
 
   <head>
     <!-- FAVICON Section -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'bootstrap/img/favicon/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'bootstrap/img/favicon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'bootstrap/img/favicon/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'bootstrap/img/favicon/site.webmanifest' %}">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+
+    <!-- Makes website shrink to fit on mobile devices:  -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Title -->
@@ -19,12 +19,14 @@
     <!-- https://bootswatch.com/flatly/ -->
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- For favicons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">    
   </head>
 
   <body>
 
-  	<nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-fixed-top">
-      <div class="container">
+  	<nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-static-top">
+      <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand mb-0 h1" href="{% url 'home' %}">
             <img src="{% static 'bootstrap/img/logo.png' %}" width="60" height="45" alt="">
@@ -61,7 +63,7 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item"><a class="nav-link" href="/admin/"><span class="glyphicon glyphicon-cog">Admin Site</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/"><span class="fas fa-cog"></span> Admin Site</a></li>
           </ul>
         </div>
       </div>
