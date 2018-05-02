@@ -60,15 +60,48 @@
         {% endif %}
       </div>
       <p>
+        <a target="_blank" class="btn btn-success" href="/admin/logs/log/add/?equipment={{equipment.id}}" role="button">+ New Log</a>
         <a target="_blank" class="btn btn-primary" href="/admin/equipment/equipment/{{equipment.id}}/change/" role="button">Edit Equipment</a>
       </p>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-9">
-        <h3>{{equipment.equipment_name}} Logs:</h3>
-        <br><br>    
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+      <br>
+      <h3>Associated Logs</h3>
+      {% if logs %}
+      <div class="table">
+        <table class="table thead-dark table-responsive table-striped">
+          <thead>
+            <tr>
+              <th>Created</th>            
+              <th>Log Type</th>
+              <th>Log Summary</th>
+              <th>Resolved?</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for log in logs %}
+              <tr>
+                  <td>{{ log.created|date:"SHORT_DATE_FORMAT" }}</td>             
+                  <td>{{log.type}}</td>
+                  <td><a href="{% url 'logs:log_detail' log.id %}">{{log.summary}}</a></td>
+                  <td>{% if log.resolved %}
+                        <i class="fas fa-check-circle" style="color:green"></i>
+                      {% else %}
+                        <i class="fas fa-times-circle" style="color:red"></i>
+                      {% endif %} </td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <p>No logs available.</p>
+          {% endif %}            
+
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 

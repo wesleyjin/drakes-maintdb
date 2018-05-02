@@ -2,7 +2,8 @@ from django.shortcuts import get_object_or_404, render
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
-from .models import Location, Equipment, Part
+from .models import Location, Equipment
+from logs.models import Log
 
 
 def index(request):
@@ -37,3 +38,8 @@ class EquipmentListView(generic.ListView):
 class EquipmentView(generic.DetailView):
     model = Equipment
     template_name = 'equipment/equipment_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['logs'] = Log.objects.filter(equipment=context['equipment'])
+        return context

@@ -60,8 +60,7 @@
         <table class="table thead-dark table-responsive table-striped">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Equipment</th>              
+              <th>Created</th>            
               <th>Log Type</th>
               <th>Log Summary</th>
               <th>Resolved?</th>
@@ -72,8 +71,7 @@
 
             {% for log in service_logs %}
               <tr>
-                  <td>{{ log.id }}</td>
-                  <td>{{log.equipment.get_location}} - {{log.equipment}}</td>                
+                  <td>{{ log.created|date:"SHORT_DATE_FORMAT" }}</td>             
                   <td>{{log.type}}</td>
                   <td><a href="{% url 'logs:log_detail' log.id %}">{{log.summary}}</a></td>
                   <td>{% if log.resolved %}
