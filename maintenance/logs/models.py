@@ -21,7 +21,7 @@ class Service(models.Model):
         ('semiannually', _('Semi-annually')),
         ('annually', _('Annually')),
         ('2years', _('2 Years')),
-        ('4years', _('4 Years')),)
+        ('4years', _('4 Years')))
 
     equipment = models.ForeignKey(
         Equipment,
@@ -49,22 +49,39 @@ class Service(models.Model):
     def has_resolved_logs(self):
         return self.log_set.filter(resolved=True, resolved_datetime__isnull=False).count() > 0
 
-    def get_last_log_time(self):
+    def get_last_service_time(self):
         last_log = self.log_set.latest()
         return last_log.resolved_datetime
 
     def time_since_last_service(self):
         if self.has_resolved_logs():
-            delta = timezone.now() - self.get_last_log_time()
+            delta = timezone.now() - self.get_last_service_time()
         else:
             return 'No logs recorded for service.'
         return delta
 
+    def days_since_last_service(self):
+        return self.time_since_last_service().days
+
     def due_for_service(self):
-        if self.frequency == 'daily':
-            return timedelta(days=1)
-
-
+        if not self.has_resolved_logs():
+            return True
+        elif self.frequency == 'daily':
+            return timedelta(days=1) < self.time_since_last_service()
+        elif self.frequency == 'weekly':
+            return timedelta(weeks=1) < self.time_since_last_service()
+        elif self.frequency == 'monthly':
+            return timedelta(weeks=4.345) < self.time_since_last_service()
+        elif self.frequency == 'quarterly':
+            return timedelta(weeks=13) < self.time_since_last_service()
+        elif self.frequency == 'semiannually':
+            return timedelta(weeks=26) < self.time_since_last_service()
+        elif self.frequency == 'annually':
+            return timedelta(weeks=52) < self.time_since_last_service()
+        elif self.frequency == '2years':
+            return timedelta(weeks=104) < self.time_since_last_service()
+        elif self.frequency == '4years':
+            return timedelta(weeks=208) < self.time_since_last_service()
 
 
 class Log(models.Model):
@@ -148,3 +165,10 @@ class Log(models.Model):
 
     def __str__(self):
         return '%s %s' % (self.id, self.summary)
+
+    def has_services(self):
+        return self.services.all().count() > 0
+
+    def get_services(self):
+        return self.services.all()
+

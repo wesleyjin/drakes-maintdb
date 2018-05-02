@@ -9,53 +9,85 @@
 
 
 {% block page-header %}
- <h2> Maintenance Service</h2>
+ <h2> Maintenance Service Detail</h2>
 {% endblock %}
 
 {% block page-header-sub %}
 <!-- {{service.equipment}} -->
-<p>Created: {{service.created}}</p>
+<p>Service created: {{service.created}}</p>
 {% endblock %}
 
 
 {% block content %}
   <div class="row">
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-      <h4>{{service.description}}</h4>
+      <h4><b>{{service.description}}</b></h4>
       <div class="table table-sm">
-        {% if service %}
-          <table class="table table-responsive table-hover table-striped">
-            <tbody>
-              <tr>
-                <td><b>Frequency:  </b></td>
-                <td>{{service.get_frequency_display}}</td>
-              </tr>               
-              <tr>
-                <td><b>Location:  </b></td>
-                <td><a href="{% url 'equipment:location' service.equipment.get_location %}"> {{service.equipment.location}}</a></td>
-              </tr>              
-              <tr>
-                <td><b>Equipment:  </b></td>
-                <td><a href="{% url 'equipment:info' location_id=service.equipment.get_location pk=service.equipment.id %}"> {{service.equipment}}</a></td>
-              </tr>                                                                                  
-            </tbody>
-          </table>
-
-        {% else %}
-          <p>No service data available.</p>
-        {% endif %}
+        <table class="table table-responsive table-hover table-striped">
+          <tbody>          
+            <tr>
+              <td><b>Equipment:  </b></td>
+              <td><a href="{% url 'equipment:info' location_id=service.equipment.get_location pk=service.equipment.id %}"> {{service.equipment}}</a></td>
+            </tr> 
+            <tr>
+              <td><b>Location:  </b></td>
+              <td><a href="{% url 'equipment:location' service.equipment.get_location %}"> {{service.equipment.location}}</a></td>
+            </tr>
+            <tr>
+              <td><b>Frequency:  </b></td>
+              <td>{{service.get_frequency_display}}</td>
+            </tr>
+            <tr>
+              <td><b>Last Service:  </b></td>
+              <td>{{service.time_since_last_service}} days ago</td>
+            </tr>                                
+          </tbody>
+        </table>
+          {% if service.notes %} <p><b>Notes:</b> {{ service.notes }}</p> {% else %}{% endif %}
       </div>
-      <a class="btn btn-primary" href="#" role="button">Edit Service</a>
-      <button type="button" class="btn btn-danger">Delete Service</button>
+      <a class="btn btn-success" href="/admin/logs/log/add/?services={{service.id}}" role="button">+ Add Service Log</a>
+      <a class="btn btn-primary" href="/admin/logs/service/{{service.id}}/change" role="button">Edit Service</a>
+      <a class="btn btn-danger" href="/admin/logs/service/{{service.id}}/delete" role="button">- Delete Service</a>
     </div>
   </div>
 
-<!--   <div class="row">
-    <div class="col-lg-9">
-        <h3>{{service.equipment_name}} Parts:</h3>     
-        <br><br>        
+  <div class="row">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+      <br>
+      <h3>Service Logs</h3>
+      {% if service_logs %}
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Equipment</th>              
+              <th>Log Type</th>
+              <th>Log Summary</th>
+              <th>Resolved?</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            {% for log in service_logs %}
+              <tr>
+                  <td>{{ log.id }}</td>
+                  <td>{{log.equipment.get_location}} - {{log.equipment}}</td>                
+                  <td>{{log.type}}</td>
+                  <td><a href="{% url 'logs:log_detail' log.id %}">{{log.summary}}</a></td>
+                  <td>{{log.resolved}}</td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <p>No logs available.</p>
+          {% endif %}            
+
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div> -->
+  </div>
     
 {% endblock %} 
 
