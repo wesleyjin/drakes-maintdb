@@ -50,7 +50,7 @@
               </tr>       
               <tr>
                 <td><b>Files</b></td>
-                <td><a href="{{equipment.files.url}}"> {{equipment.files.name}}</td>
+                <td><a href="{{equipment.files.url}}"> {{equipment.files.name}}</a></td>
               </tr>                     
             </tbody>
           </table>
@@ -60,8 +60,7 @@
         {% endif %}
       </div>
       <p>
-        <a class="btn btn-primary" href="/admin/equipment/equipment/{{equipment.id}}/change/" role="button">Edit Equipment</a>
-        <button type="button" class="btn btn-danger">Delete Equipment</button>
+        <a target="_blank" class="btn btn-primary" href="/admin/equipment/equipment/{{equipment.id}}/change/" role="button">Edit Equipment</a>
       </p>
     </div>
   </div>

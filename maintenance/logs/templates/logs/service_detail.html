@@ -57,7 +57,7 @@
       <h3>Service Logs</h3>
       {% if service_logs %}
       <div class="table">
-        <table class="table table-striped">
+        <table class="table thead-dark table-responsive table-striped">
           <thead>
             <tr>
               <th>#</th>
@@ -76,7 +76,11 @@
                   <td>{{log.equipment.get_location}} - {{log.equipment}}</td>                
                   <td>{{log.type}}</td>
                   <td><a href="{% url 'logs:log_detail' log.id %}">{{log.summary}}</a></td>
-                  <td>{{log.resolved}}</td>
+                  <td>{% if log.resolved %}
+                        <i class="fas fa-check-circle" style="color:green"></i>
+                      {% else %}
+                        <i class="fas fa-times-circle" style="color:red"></i>
+                      {% endif %} </td>
               </tr>
             {% endfor %}
           {% else %}

@@ -73,7 +73,13 @@
       {% else %}
       {% endif %}
 
-
+        <p><b>Attached Files:</b>
+          {% if log.files %}
+            <a href="{{equipment.files.url}}"> {{equipment.files.name}}</a>
+          {% else %}
+            None
+        </p>
+      {% endif %}      
     </div>
   </div>
 
@@ -101,7 +107,7 @@
           </tbody>
         </table>
       </div>
-      <a class="btn btn-primary" href="/admin/logs/log/{{log.id}}/change/" role="button">Edit Log</a> 
+      <a target="_blank" class="btn btn-primary" href="/admin/logs/log/{{log.id}}/change/" role="button">Edit Log</a> 
       <br><br>   
     </div>
   </div>
