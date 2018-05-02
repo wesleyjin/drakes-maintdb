@@ -2,9 +2,9 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from equipment.models import Equipment
+from django.utils import timezone
+from datetime import timedelta
 
-
-# Create your models here.
 
 class Service(models.Model):
     """
@@ -43,6 +43,29 @@ class Service(models.Model):
     def __str__(self):
         return '%s: %s ' % (self.equipment, self.description)
 
+    def get_log_set(self):
+        return self.log_set.all()
+
+    def has_resolved_logs(self):
+        return self.log_set.filter(resolved=True, resolved_datetime__isnull=False).count() > 0
+
+    def get_last_log_time(self):
+        last_log = self.log_set.latest()
+        return last_log.resolved_datetime
+
+    def time_since_last_service(self):
+        if self.has_resolved_logs():
+            delta = timezone.now() - self.get_last_log_time()
+        else:
+            return 'No logs recorded for service.'
+        return delta
+
+    def due_for_service(self):
+        if self.frequency == 'daily':
+            return timedelta(days=1)
+
+
+
 
 class Log(models.Model):
     """
@@ -73,7 +96,7 @@ class Log(models.Model):
         on_delete=models.CASCADE)
 
     summary = models.CharField(
-        _('The title of the log entry. Summary of work done/issue'),
+        help_text=_('The title of the log entry. Summary of work done/issue'),
         max_length=200)
 
     description = models.TextField(
@@ -120,7 +143,7 @@ class Log(models.Model):
         blank=True)
 
     class Meta:
-        get_latest_by = 'created'
+        get_latest_by = 'resolved_datetime'
         ordering = ['-id']
 
     def __str__(self):
