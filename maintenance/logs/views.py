@@ -15,7 +15,8 @@ class HomepageView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['extra'] = extra object
+        context['recent_logs'] = Log.objects.all().order_by('created')[:5]
+        context['upcoming_services'] = Service.objects.all()[:5]
         return context
 
 
@@ -42,6 +43,7 @@ class ServiceListView(generic.ListView):
     template_name = 'logs/service_home.html'
     model = Service
     context_object_name = 'service_list'
+    paginate_by = 10
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -52,3 +54,8 @@ class ServiceListView(generic.ListView):
 class ServiceDetailView(generic.DetailView):
     model = Service
     template_name = 'logs/service_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['service_logs'] = context['service'].get_log_set()
+        return context

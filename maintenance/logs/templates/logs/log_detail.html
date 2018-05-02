@@ -62,6 +62,18 @@
       </div>
       <h4><b>{{log.summary}}</b></h4>
       <p><b>Description: </b>{{log.description}}</p>
+
+
+      {% if log.has_services %}
+        <p><b>Services completed:</b></p>
+        {% for s in log.get_services %}
+          <li><a href="{% url 'logs:service_detail' s.id %}">{{ s.description }}</a></li>
+        {% endfor %}
+        <br>
+      {% else %}
+      {% endif %}
+
+
     </div>
   </div>
 
@@ -72,7 +84,11 @@
           <tbody>
             <tr>
               <td><b>Resolved?</b></td>
-              <td>{{log.resolved}}</td>
+              <td>{% if log.resolved %}
+                    <i class="fas fa-check-circle" style="color:green"></i>
+                  {% else %}
+                    <i class="fas fa-times-circle" style="color:red"></i>
+                  {% endif %} </td>
             </tr>                            
             <tr>
               <td><b>Resolved by: </b></td>
@@ -85,8 +101,7 @@
           </tbody>
         </table>
       </div>
-      <a class="btn btn-primary" href="/admin/logs/log/{{log.id}}/change/" role="button">Edit Log</a>
-      <button type="button" class="btn btn-danger">Delete Log</button>    
+      <a class="btn btn-primary" href="/admin/logs/log/{{log.id}}/change/" role="button">Edit Log</a> 
       <br><br>   
     </div>
   </div>

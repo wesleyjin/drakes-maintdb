@@ -19,43 +19,25 @@
 
   <div class="row">
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-      <div class="table-responsive">
-        <div class="jumbotron">
-          <h1 class="display-3">Maintenance Dash</h1>
-          <p class="lead">Queried dashboard objects will go here.</p>
-          <hr class="my-4">
-          <p>Uses utility classes for typography and spacing to space content out within the larger container.</p>
-          <p class="lead">
-            <a class="btn btn-primary btn-lg" href="{% url 'equipment:list' %}" role="button">See Equipment</a>
-            <a class="btn btn-primary btn-lg" href="{% url 'logs:logs' %}" role="button">See Logs</a>
-            <a class="btn btn-primary btn-lg" href="{% url 'logs:services' %}" role="button">See Services</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-      <h2> Availability by Location (last 3 months)</h2>
+      <h2> Availability by Location (past month)</h2>
       <h5>Brew House 1</h5>
       <div class="progress">
-        <div class="progress-bar bg-success" role="progressbar" style="width: 90%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 96%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
       <br>
       <h5>Brew House 2</h5>
       <div class="progress">
-        <div class="progress-bar bg-info" role="progressbar" style="width: 96%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 98%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> 100% </div>
       </div>
       <br>
       <h5>Mill Room</h5>
       <div class="progress">
-        <div class="progress-bar bg-warning" role="progressbar" style="width: 95%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 100%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
       <br>
       <h5>Packaging</h5>
       <div class="progress">
-        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 90%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
     </div>
   </div>
@@ -65,24 +47,75 @@
 
   <div class="row">
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-        <div class="jumbotron">
-          <h1 class="display-4">Recent Logs Here</h1>
-          <p class="lead">Queried logs (last 10 will go here).</p>
-            <a class="btn btn-primary btn-lg" href="{% url 'logs:logs' %}" role="button">See All Logs</a>
-          </p>
-        </div>        
+      <h2>Recent logs</h2>
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Equipment</th>                 
+              <th>Log Type</th>                
+              <th>Log Summary</th>
+              <th>Resolved?</th>
+            </tr>
+          </thead>
+
+          <tbody>
+          {% if recent_logs %}
+            {% for log in recent_logs %}
+              <tr>
+                  <td>{{ log.equipment }}</td>                    
+                  <td>{{ log.type }}</td>                          
+                  <td><a href="{% url 'logs:log_detail' log.id %}">{{ log.summary }}</a></td>
+                  <td>{% if log.resolved %}
+                        <i class="fas fa-check-circle" style="color:green"></i>
+                      {% else %}
+                        <i class="fas fa-times-circle" style="color:red"></i>
+                      {% endif %} </td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <p>No services available.</p>
+          {% endif %}            
+          </tbody>
+
+        </table>         
+      </div>      
     </div>
   </div>
 
 <br>
   <div class="row">
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-        <div class="jumbotron">
-          <h1 class="display-4">Due Maintenance Services Here</h1>
-          <p class="lead">Queried services (10 most urgent will go here).</p>
-            <a class="btn btn-primary btn-lg" href="{% url 'logs:services' %}" role="button">See All Services</a>
-          </p>
-        </div>        
+      <h2>Upcoming Maintenance</h2>
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Equipment</th>                 
+              <th>Description</th>                
+              <th>Frequency</th>
+              <th>Last Serviced</th>
+            </tr>
+          </thead>
+
+          <tbody>
+          {% if upcoming_services %}
+            {% for service in upcoming_services %}
+              <tr>
+                  <td>{{service.equipment}}</td>
+                  <td><a href="{% url 'logs:service_detail' service.id %}">{{service.description}}</a></td>
+                  <td>{{service.get_frequency_display}}</td>
+                  <td>{{service.get_last_service_time|date:"SHORT_DATE_FORMAT"}}</td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <p>No services available.</p>
+          {% endif %}            
+
+          </tbody>
+
+        </table>         
+      </div>      
     </div>
-  </div>  
+  </div>
 {% endblock %}

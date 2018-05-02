@@ -39,15 +39,15 @@
             </tr>
             <tr>
               <td><b>Last Service:  </b></td>
-              <td>{{service.time_since_last_service}} days ago</td>
+              <td>{{service.get_last_service_time}}</td>
             </tr>                                
           </tbody>
         </table>
           {% if service.notes %} <p><b>Notes:</b> {{ service.notes }}</p> {% else %}{% endif %}
       </div>
-      <a class="btn btn-success" href="/admin/logs/log/add/?services={{service.id}}" role="button">+ Add Service Log</a>
-      <a class="btn btn-primary" href="/admin/logs/service/{{service.id}}/change" role="button">Edit Service</a>
-      <a class="btn btn-danger" href="/admin/logs/service/{{service.id}}/delete" role="button">- Delete Service</a>
+      <a target="_blank" class="btn btn-success" href="/admin/logs/log/add/?services={{service.id}}" role="button">+ Add Service Log</a>
+      <a target="_blank" class="btn btn-primary" href="/admin/logs/service/{{service.id}}/change" role="button">Edit Service</a>
+      <a target="_blank" class="btn btn-danger" href="/admin/logs/service/{{service.id}}/delete" role="button">Delete</a>
     </div>
   </div>
 

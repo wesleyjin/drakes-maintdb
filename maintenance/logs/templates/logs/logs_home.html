@@ -21,7 +21,7 @@ work logs, requests, equipment issues, & preventative maintenance
 
   <div class="row">
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-      <p><a class="btn btn-success" href="/admin/logs/log/add/" role="button">+ Add Log</a></p>
+      <p><a target="_blank" class="btn btn-success" href="/admin/logs/log/add/" role="button">+ Add Log</a></p>
       <div class="table">
         <table class="table table-striped">
           <thead>
@@ -42,7 +42,11 @@ work logs, requests, equipment issues, & preventative maintenance
                   <td>{{log.equipment.get_location}} - {{log.equipment}}</td>                
                   <td>{{log.type}}</td>
                   <td><a href="{% url 'logs:log_detail' log.id %}">{{log.summary}}</a></td>
-                  <td>{{log.resolved}}</td>
+                  <td>{% if log.resolved %}
+                        <i class="fas fa-check-circle" style="color:green"></i>
+                      {% else %}
+                        <i class="fas fa-times-circle" style="color:red"></i>
+                      {% endif %} </td>
               </tr>
             {% endfor %}
           {% else %}
