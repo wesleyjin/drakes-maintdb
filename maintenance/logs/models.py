@@ -73,7 +73,7 @@ class Log(models.Model):
         on_delete=models.CASCADE)
 
     summary = models.CharField(
-        _('Summary of work done/issue'),
+        _('The title of the log entry. Summary of work done/issue'),
         max_length=200)
 
     description = models.TextField(
@@ -121,6 +121,7 @@ class Log(models.Model):
 
     class Meta:
         get_latest_by = 'created'
+        ordering = ['-id']
 
     def __str__(self):
         return '%s %s' % (self.id, self.summary)

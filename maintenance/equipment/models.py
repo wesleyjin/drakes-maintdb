@@ -2,9 +2,6 @@ from django.db import models
 from django.shortcuts import get_object_or_404
 
 
-# Create your models here.
-
-
 class Location(models.Model):
     location_id = models.CharField(primary_key=True, max_length=5)
     location_name = models.CharField(max_length=50)
@@ -40,7 +37,7 @@ class Part(models.Model):
     on_equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
     manufacturer = models.CharField(max_length=50, blank=True)
     supplier = models.CharField(max_length=50, blank=True)
-    lead_time = models.DurationField(blank = True, null=True)
+    lead_time = models.DurationField(blank=True, null=True)
 
     def __str__(self):
         return '%s on %s' % (self.part_name,
