@@ -9,6 +9,12 @@ Database that logs all maintenance-related equipment, services, schedules, & mor
 * Django 2.0 - `pip install django` https://docs.djangoproject.com/en/2.0/intro/install/
 * django_filters - `pip install django-filter` http://django-filter.readthedocs.io/en/latest/guide/install.html
 * django_tables2 - `pip install django-tables2` https://django-tables2.readthedocs.io/en/latest/pages/installation.html
+* We suggest installing this version of Python and django installations in a virtual environment to prevent updates from causing bugs in project code.
+
+### Running the Server
+0. (Activate virtual environment)
+1. `python manage.py runserver`
+2. Using browser navigate to `localhost:8000/`
 
 
 ## Directories & Files:
