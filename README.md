@@ -3,9 +3,10 @@ Files for IEOR 180 project
 Drake's Brewing Co. Maintenance DB
 
 ## Getting started:
-0. Install Django and Python dependencies. (Activate 'maintdb' virtual environment)
-1. 'cd' into the folder named 'maintenance'
-2. To start server, run the following in command line >> python manage.py runserver
+0. Install Django and Python dependencies (create/activate virtual environment to keep Django and Python installation separate)
+1. 'cd' into '/maintenance' 
+2. To start server, run the following in command line 
+`>> python manage.py runserver`
 	- Anytime you run this line, make sure the current directory is the root maintdb folder, with the file 'manage.py' in it.
 3. Visit http://localhost:8000/admin in your web browser. Should see admin login
 
